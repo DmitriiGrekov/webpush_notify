@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'webpush',
-    'webpushapp',
+    'notifications',
 ]
 
 MIDDLEWARE = [
@@ -117,10 +117,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'statis')
+]
 
-WEBPUSH_SETTINGS = {
-    "VAPID_PUBLIC_KEY": "04d9b1750434288ef643d8feb88731a1ffcd26b210ba4a1d1bfc39a4f1ff3db9c47bee2a36555046df6b95f54bc2681173582380a25f6ba88965d1fb911d6ddbf2",
-    "VAPID_PRIVATE_KEY": "-----BEGIN PRIVATE KEY-----\nMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgnU3SpKzZfsm4HSi3\nuKLhM+MSdZKn8IyxutA2zdiT+jmhRANCAATZsXUENCiO9kPY/riHMaH/zSayELpK\nHRv8OaTx/z25xHvuKjZVUEbfa5X1S8JoEXNYI4CiX2uoiWXR+5Edbdvy\n-----END PRIVATE KEY-----\n",
-    "VAPID_ADMIN_EMAIL": "grekovdima7@gmail.com"
-}
+VAPID_PUBLIC_KEY = ""
+VAPID_PRIVATE_KEY = "private_key.pem"
+VAPID_ADMIN_EMAIL = ""

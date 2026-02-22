@@ -1,0 +1,21 @@
+<!-- notifications/templates/notifications/index.html -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Push-уведомления</title>
+</head>
+
+<body data-vapid-key="{{ vapid_public_key }}">
+    <h1>Push-уведомления</h1>
+    <p id="status">Статус: не определён</p>
+
+    <button id="btn-subscribe">🔔 Подписаться</button>
+    <button id="btn-unsubscribe">🔕 Отписаться</button>
+
+    {% load static %}
+    <script src="{% static 'notifications/js/push.js' %}"></script>
+</body>
+
+</html>
