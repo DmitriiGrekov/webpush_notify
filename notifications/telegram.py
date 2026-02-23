@@ -1,9 +1,13 @@
+import logging
 import asyncio
 from aiogram import Bot
 from aiogram.exceptions import TelegramForbiddenError, TelegramBadRequest
 from django.conf import settings
 from asgiref.sync import sync_to_async
 from .models import TelegramSubscriber
+
+
+logger = logging.getLogger(__name__)
 
 @sync_to_async
 def _get_subscribers():
@@ -14,6 +18,7 @@ def _delete_subscriber(subscriber):
     subscriber.delete()
 
 async def _send_all(text: str):
+    logger.error(f'{settings.TELEGRAM_BOT_TOKEN=}')
     bot = Bot(token=settings.TELEGRAM_BOT_TOKEN)
     # Получаем подписчиков асинхронно
     subscribers = await _get_subscribers()

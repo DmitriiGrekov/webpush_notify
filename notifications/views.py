@@ -1,3 +1,4 @@
+import logging
 import json
 from django.conf import settings
 from django.http import JsonResponse
@@ -6,6 +7,9 @@ from django.views.decorators.csrf import csrf_exempt
 from pywebpush import webpush, WebPushException
 from .models import PushSubcsription
 from .telegram import send_telegram_message
+
+
+logger = logging.getLogger(__name__)
 
 
 def index(request):
