@@ -80,6 +80,28 @@ services:
     networks:
       - pushsite_network
     restart: unless-stopped
+  
+  telegram_bot:
+    build: .
+    container_name: pushsite_telegram_bot
+    command: python notifications/bot.py
+    volumes:
+      - .:/app
+    environment:
+      - DEBUG=${DEBUG:-False}
+      - SECRET_KEY=${SECRET_KEY:-django-insecure-change-this-in-production}
+      - POSTGRES_DB=${POSTGRES_DB:-pushsite}
+      - POSTGRES_USER=${POSTGRES_USER:-pushsite_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-changeme123}
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - pushsite_network
+    restart: unless-stopped
 
 volumes:
   postgres_data:

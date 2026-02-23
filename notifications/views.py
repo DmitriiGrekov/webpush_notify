@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from pywebpush import webpush, WebPushException
 from .models import PushSubcsription
+from .telegram import send_telegram_message
 
 
 def index(request):
@@ -65,5 +66,6 @@ def send_notification(request):
                 # если подписка устарела - удаляем
                 if e.response and e.response.status_code == 410:
                     sub.delete()
+        send_telegram_message(f'📢 Уведомление отправлено всем подписчикам:\n\n{title}\n{message}')
         return JsonResponse(results)
     return render(request, 'notifications/send.html')

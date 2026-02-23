@@ -2,13 +2,40 @@
 
 Это Django приложение для отправки push-уведомлений, настроенное для запуска в Docker с nginx, автоматическим SSL сертификатом от Let's Encrypt и PostgreSQL.
 
-## Требования
+## 🚀 Варианты запуска
+
+Проект поддерживает два режима работы:
+
+1. **🐳 Production (Docker)** - для развертывания на сервере с HTTPS
+2. **💻 Локальная разработка** - для разработки без Docker
+
+### Локальная разработка (без Docker)
+
+Для быстрого старта локальной разработки:
+
+```bash
+# Запуск на macOS/Linux
+./run_local.sh
+
+# Запуск на Windows
+run_local.bat
+```
+
+📖 **Документация:**
+- [QUICKSTART_LOCAL.md](QUICKSTART_LOCAL.md) - Быстрый старт за 5 минут
+- [LOCAL_DEVELOPMENT.md](LOCAL_DEVELOPMENT.md) - Подробное руководство
+
+### Production развертывание (Docker)
+
+Для production развертывания с HTTPS см. инструкции ниже.
+
+## Требования для Production
 
 - Docker
 - Docker Compose
 - Доменное имя, указывающее на ваш сервер
 
-## Быстрый старт
+## Быстрый старт (Production)
 
 ### 1. Клонирование и настройка
 
@@ -279,6 +306,19 @@ db:
   environment:
     - POSTGRES_INITDB_ARGS="-E UTF8 --locale=ru_RU.UTF-8"
   command: postgres -c shared_buffers=256MB -c max_connections=200
+```
+
+## Локальная разработка
+
+Для разработки без Docker см. подробную документацию: [LOCAL_DEVELOPMENT.md](LOCAL_DEVELOPMENT.md)
+
+Быстрый запуск:
+```bash
+# macOS/Linux
+./run_local.sh
+
+# Windows
+run_local.bat
 ```
 
 ## Лицензия
