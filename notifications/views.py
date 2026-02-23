@@ -40,9 +40,9 @@ def unsubscribe(request):
 @csrf_exempt
 def send_notification(request):
     """Отправляет уведомление всем подписчикам."""
-    if request.method == 'POST':
-        title = request.POST.get('title', 'Уведомление')
-        message = request.POST.get('message', '')
+    if request.method == 'GET':
+        title = request.GET.get('title', 'Уведомление')
+        message = request.GET.get('message', '')
         payload = json.dumps({'title': title, 'message': message})
         subscriptions = PushSubcsription.objects.all()
         results = {'sent': 0, 'failed': 0}
