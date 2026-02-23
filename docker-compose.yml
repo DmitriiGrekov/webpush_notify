@@ -14,7 +14,7 @@ services:
       - pushsite_network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-pushsite_user}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-pushsite_user} -d ${POSTGRES_DB:-pushsite}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -27,6 +27,8 @@ services:
       - .:/app
       - static_volume:/app/staticfiles
       - media_volume:/app/media
+      - ./private_key.pem:/app/private_key.pem:ro
+      - ./private_key_ec.pem:/app/private_key_ec.pem:ro
     expose:
       - 8000
     environment:

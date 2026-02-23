@@ -1,1 +1,7 @@
 env/
+.env
+certbot/
+en/
+nginx/conf.d/default.conf.bak
+private_key.pem
+private_key_ec.pem

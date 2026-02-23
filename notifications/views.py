@@ -65,5 +65,5 @@ def send_notification(request):
                 # если подписка устарела - удаляем
                 if e.response and e.response.status_code == 410:
                     sub.delete()
-        return JsonReponse(results)
+        return JsonResponse(results)
     return render(request, 'notifications/send.html')

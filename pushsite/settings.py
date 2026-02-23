@@ -140,7 +140,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # VAPID keys for push notifications
 VAPID_PUBLIC_KEY = os.environ.get('VAPID_PUBLIC_KEY', '')
-VAPID_PRIVATE_KEY = os.environ.get('VAPID_PRIVATE_KEY', 'private_key.pem')
+VAPID_PRIVATE_KEY = os.environ.get('VAPID_PRIVATE_KEY', '/app/private_key.pem')
 VAPID_ADMIN_EMAIL = os.environ.get('VAPID_ADMIN_EMAIL', '')
 
 # Security settings for production

@@ -20,8 +20,8 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt /app/
 
 # Установка Python зависимостей
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --upgrade pip && \
+    pip3 install --no-cache-dir -r requirements.txt
 
 # Копирование проекта
 COPY . /app/

@@ -3,12 +3,6 @@
 # Выход при ошибке
 set -e
 
-echo "Ожидание готовности PostgreSQL..."
-while ! nc -z $POSTGRES_HOST $POSTGRES_PORT; do
-  sleep 0.1
-done
-echo "PostgreSQL запущен"
-
 echo "Применение миграций базы данных..."
 python manage.py migrate --noinput
 
